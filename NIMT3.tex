@@ -1,7 +1,21 @@
 \documentclass[11pt, a4paper]{article}
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+   \pdffalse
+\else
+   \pdfoutput=1
+   \pdftrue
+\fi
+\ifpdf
+   \usepackage{graphicx}
+   \usepackage{epstopdf}
+   \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
+   \pdfcompresslevel=9
+\else
+   \usepackage{graphicx}
+\fi
 \usepackage[utf8x]{inputenc}
 \usepackage[swedish, english]{babel}		% last is active
-%\usepackage{graphicx}
 \usepackage{amsmath}					% to be able to \split eqs
 \usepackage{amssymb}					% Real/Imaginary fonts
 \usepackage{units}
@@ -26,7 +40,7 @@
 Yunus Gures, yunusgures@gmail.com}
 \def\names{Torbjørn Ludvigsen, Olof Lenti, Yunus Gures}
 \def\dept{Department of Physics}
-\def\course{Non invasive measurement theory}
+\def\course{Non invasive measurement techniques}
 \def\lab{Optical measurements:\\Determination of the Damping of a Pendulum with Time of Flight}
 \def\supervisors{Patrick Ehlers\\Isak Silander\\ Amir Khodabakhsh}
 \date{\todayswe}
@@ -67,8 +81,23 @@ Yunus Gures, yunusgures@gmail.com}
 \pagestyle{plain}
 \vspace{2cm}
 \section{Introduction}
+A mechanical system cosisting only of a rigid body, with only one degree of 
+freedom, rotation around a constant axis, from here on called a pendulum, is 
+a system of great interest. Historically it has had a wide range of
+applications in science, mathemathics and in everyday life. Among the reasons for
+its continued importance as an educational tool in physics is its short, general 
+equations of
+motion in the linearized, small amplitude case, and the ease and the great number 
+of ways by which this case can be extended.
+
+This experiment in particular will measure a physical pendulum's decreasing velocity
+in order to find and analyze its damping forces. A time of flight instrumentation
+is constructed and used to aquire the velocity data.
 
 \section{Theory}
+\subsection{The pendulum}
+
+
 \subsection{Optics}
 \subsection{Circuits}
 \subsection{maths}
