@@ -95,18 +95,37 @@ vertical line, $m$ is the mass, $g$ is the acceleration due to gravity and
 $l$ is the distance from the pivot to the center of mass.
 
 To include forces that depend linearly on velocity, we introduce a term
-$F_l = -2\gamma \frac{d\theta}{dt}$ into Equation \ref{eq_of_motion}, giving
-solutions on the form
+$F_l = -a \frac{d\theta}{dt}$ into Equation \ref{eq_of_motion}, giving
+very complicated solutions. Forces that depend on velocity squared may be included
+i a similar manner, giving an equation of motion on the form
+\begin{equation}
+    \frac{d^2\theta}{dt^2} 
+  - a \frac{d\theta}{dt} \left(
+  + \frac{b}{a} \frac{d\theta}{dt} \right)  
+  + \frac{mgl}{I_p}\sin{\theta} = 0,
+  \label{eq_of_motion_complicated}
+\end{equation}
+where $a$ and $b$ are constants.
 
+However, we observe that it looks like a damped harmonic oscillator\cite{osc}, with a
+damping ratio that depends on velocity.
 
+%By approximating $\sin{\theta} \approx \theta$, we
+%get the simpler expression
+%\begin{equation}
+%  \theta = Ae^{r_1t} + Be^{r_2t},
+%  \label{diff_solution}
+%\end{equation}
+%where $A$, $B$ are constant determined by initial conditions and $r_1$, $r_2$ are
+%solutions to the second order polynomial created by substituting equation
+%\ref{diff_solution} into \ref{eq_of_motion}.
 
 \subsection{Friction}
+A physical pendulum will usually experience some friction between solid
+surfaces around its pivot point.
+This force may realistically be modelled as being proportional to velocity\cite{}.
 
-\subsection{Damping}
 
-\subsection{Optics}
-\subsection{Circuits}
-\subsection{Friction}
 \subsection{Drag}
 Air drag is a the force of friction from air. This force is described differently for different regions of velocity. 
 For low velocities we approximate an object as though it was moving through a liquid with no turbulence.
@@ -126,6 +145,9 @@ For our purpose all of the factors are constants, which allows us to use
  F_D = -c\cdot v^2,
 \]
 where c is a positive constant.
+
+\subsection{Optics}
+\subsection{Circuits}
 
 \section{Experimental Setup}
 \section{Procedure}
@@ -222,6 +244,9 @@ able to do a high enough velocity measurement due to the quick damping as well a
 
   \bibitem{drag} Wikipedia. \textit{Drag}\\ 
   \url{http://en.wikipedia.org/wiki/Drag_(physics)} [\todayswe]
+
+  \bibitem{osc} Wikipedia. \textit{Harmonic oscillator}\\ 
+  \url{http://en.wikipedia.org/wiki/Harmonic_oscillator} [\todayswe]
 
 \end{thebibliography}
 
