@@ -1,21 +1,7 @@
 \documentclass[11pt, a4paper]{article}
-\newif\ifpdf
-\ifx\pdfoutput\undefined
-   \pdffalse
-\else
-   \pdfoutput=1
-   \pdftrue
-\fi
-\ifpdf
-   \usepackage{graphicx}
-   \usepackage{epstopdf}
-   \DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf #1}
-   \pdfcompresslevel=9
-\else
-   \usepackage{graphicx}
-\fi
 \usepackage[utf8x]{inputenc}
 \usepackage[swedish, english]{babel}		% last is active
+\usepackage{graphicx}
 \usepackage{amsmath}					% to be able to \split eqs
 \usepackage{amssymb}					% Real/Imaginary fonts
 \usepackage{units}
@@ -40,7 +26,7 @@
 Yunus Gures, yunusgures@gmail.com}
 \def\names{Torbjørn Ludvigsen, Olof Lenti, Yunus Gures}
 \def\dept{Department of Physics}
-\def\course{Non invasive measurement techniques}
+\def\course{Non-invasive measurement techniques}
 \def\lab{Optical measurements:\\Determination of the Damping of a Pendulum with Time of Flight}
 \def\supervisors{Patrick Ehlers\\Isak Silander\\ Amir Khodabakhsh}
 \date{\todayswe}
@@ -102,7 +88,6 @@ is constructed and used to aquire the velocity data.
 \subsection{Circuits}
 \subsection{maths}
 
-blabla
 The forces considering air drag are described differently for different velocities. For very low velocities i.e. when the pendulum is at its turning point the drag force will be proportional to the velocity as
 
 \[
@@ -110,6 +95,9 @@ F_d = -bv,
 \]
 where $F_d$ is force of drag, $v$ is the velocity and $b$ is a positive constant.
 For higher velocities the force of 
+
+
+
 
 
 By beginning with the equation
@@ -125,9 +113,83 @@ In a similar fashion we can break out $e^{bt}$
 
 \section{Experimental Setup}
 \section{Procedure}
+
 \section{Error calculations}
+\subsection{Error of the time of flight instrumentation}
+One error of the measurement device is the error from the non-continous data collecting as demonstrated in Figure \ref{f:lasercloseup}.
+Since our LabVIEW-setup collect data only at a rate of some $kHz$ and we measure fast velocities we will get an error from this. The error can be found as
+\[
+	v_{err}=\Delta t_{err}\cdot \Delta s,
+\]
+where $\Delta s$ is the length between the two laser lights, $\Delta t$ is the rate of the data collecting and $v$ is the velocity. The error in time is $<\Delta t$. Thus we set the maximum error in time as $\Delta t$.
+\begin{figure}[h]
+	\centering
+	\includegraphics{errorofdevice}
+	\caption{The source of the error of the time of flight instrumentation is demonstrated.}
+	\label{f:lasercloseup}
+\end{figure}
+By the fact that $\Delta s = v\cdot (\Delta t + \Delta t_{err})$We set $\Delta t = 50kHz$.
+
+
+\subsection{Error of the slope of a linear fitting}
+To calculate the error of the slope of a linear fit we simply use MATLAB to calculate the following equation:
+\begin{equation}
+	s = \text{std}(f(x)-data(x)),
+	\label{e:std}
+\end{equation}
+where $s$ is the standard deviation of the residuals, $x$ is the x-values of the region considered, $data$ is the data values of the region considered and $f$ is the linear fit.
+This standard deviation will be a measure of how correct the linear approximation is.
+
+
+
 \section{Results}
+In Figure \ref{f:nopaper} we see the logarithm of work done by the friction and 
+drag on the pendulum with the added area plotted versus the logarithm of velocity. 
+The units of the work and velocity are an unknown constant times their SI-unit. 
+The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
+\[
+	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.36(4),
+\]\[
+	slope_{high}=\frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.60(3).
+\]
+The values inside the parentheses are the standard deviation of the slope calculated using Equation \ref{e:std}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=10.0cm 10.0cm 10.0cm 10.0cm, scale=0.7]{no_paper}
+	\caption{Work versus velocity data and  linear fits for the pendulum.}
+	\label{f:nopaper}
+\end{figure}
+
+In Figure \ref{f:paper} we see the logarithm of work done by the friction and 
+drag on the pendulum with the added area plotted versus the logarithm of velocity. 
+The units of the work and velocity are an unknown constant times their SI-unit. 
+The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
+
+\[
+	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.96(4),
+\]\[
+	slope_{high}=\frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.63(7).
+\]
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[trim=10.0cm 10.0cm 10.0cm 10.0cm, scale=0.7]{paper}
+	\caption{Work versus velocity data and  linear fits for the pendulum with an added area.}
+	\label{f:paper}
+\end{figure}
+
+It is clear that the slopes of the high velocity region are similar and close to $3$. 
+The slope of the added-area pendulum for the low-velocity region is very close to $2$.
+The slope of the ordinary pendulum for the low-velocity region is slightly above $1$.
+
+
+
 \section{Discussion}
+The behavior of the high-velocity region is not entirely as expected. We expected the slope of the added-area pendulum 
+to be closer to $3$ than the other pendulum.
+This is explained by the fact that the high-velocity regions are not exactly the same for the different types of pendula. We were not 
+able to do a high enough velocity measurement due to the quick damping as well as the fluttering of the added area.
 \section{Summary and Conclusions}
 \vfill
 
