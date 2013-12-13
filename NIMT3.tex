@@ -106,30 +106,26 @@ solutions on the form
 
 \subsection{Optics}
 \subsection{Circuits}
-\subsection{maths}
-
-The forces considering air drag are described differently for different velocities. For very low velocities i.e. when the pendulum is at its turning point the drag force will be proportional to the velocity as
-
+\subsection{Friction}
+\subsection{Drag}
+Air drag is a the force of friction from air. This force is described differently for different regions of velocity. 
+For low velocities we approximate an object as though it was moving through a liquid with no turbulence.
+For this case the force is proportional to $v$ as
 \[
 F_d = -bv,
 \]
-where $F_d$ is force of drag, $v$ is the velocity and $b$ is a positive constant.
-For higher velocities the force of 
+where $F_d$ is force of drag, $v$ is the velocity and $b$ is a positive constant. 
 
-
-
-
-
-By beginning with the equation
+For higher velocities the force of drag can be described as
 \[
-v_{max} = Ce^{at} + De^{bt}.
+ F_D = \frac{1}{2}\rho v^2 C_D A,
 \]
-By breaking out $e^{at}$ and taking the logarithm we end up with the equation
+where $F_D$ is the drag force, $\rho$ is the mass density of the fluid and $C_D$ is the drag coefficient.
+For our purpose all of the factors are constants, which allows us to use
 \[
-\ln(v_{max}) = \ln(C + De^{\frac{b}{a}t}) + at
+ F_D = -c\cdot v^2,
 \]
-For small $t$ the first term will be nearly constant. A linear fit can be made to find the slope $a$.
-In a similar fashion we can break out $e^{bt}$
+where c is a positive constant.
 
 \section{Experimental Setup}
 \section{Procedure}
@@ -137,18 +133,24 @@ In a similar fashion we can break out $e^{bt}$
 \section{Error calculations}
 \subsection{Error of the time of flight instrumentation}
 One error of the measurement device is the error from the non-continous data collecting as demonstrated in Figure \ref{f:lasercloseup}.
-Since our LabVIEW-setup collect data only at a rate of some $kHz$ and we measure fast velocities we will get an error from this. The error can be found as
+Since our LabVIEW-setup collect data only at a rate of $50\text{kHz}$ and we measure at high velocities we will get an error from this.
+Since we know the maximum error in time as the rate of data collecting we know the maximum error as:
 \[
-	v_{err}=\Delta t_{err}\cdot \Delta s,
+	\Delta v=\Delta t\cdot s,
 \]
-where $\Delta s$ is the length between the two laser lights, $\Delta t$ is the rate of the data collecting and $v$ is the velocity. The error in time is $<\Delta t$. Thus we set the maximum error in time as $\Delta t$.
+where $\Delta v$ is the maximum error of velocity, $\Delta t$ is the maximum error in time and $s$ is the distance travelled during this time.
+This equation can be rewritten as:
+\[
+	\Delta v=\Delta t\cdot (\Delta t \cdot (v + \Delta v)) \Rightarrow\Delta v = \frac{v(\Delta t)^2}{1-\Delta t}
+\]
+
 \begin{figure}[h]
 	\centering
 	\includegraphics{errorofdevice}
 	\caption{The source of the error of the time of flight instrumentation is demonstrated.}
 	\label{f:lasercloseup}
 \end{figure}
-By the fact that $\Delta s = v\cdot (\Delta t + \Delta t_{err})$We set $\Delta t = 50kHz$.
+
 
 
 \subsection{Error of the slope of a linear fitting}
@@ -164,8 +166,8 @@ This standard deviation will be a measure of how correct the linear approximatio
 
 \section{Results}
 In Figure \ref{f:nopaper} we see the logarithm of work done by the friction and 
-drag on the pendulum with the added area plotted versus the logarithm of velocity. 
-The units of the work and velocity are an unknown constant times their SI-unit. 
+drag on the pendulum plotted versus the logarithm of velocity. 
+The units of the work and velocity are a constant times their SI-unit. 
 The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
 \[
 	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.36(4),
@@ -183,7 +185,7 @@ The values inside the parentheses are the standard deviation of the slope calcul
 
 In Figure \ref{f:paper} we see the logarithm of work done by the friction and 
 drag on the pendulum with the added area plotted versus the logarithm of velocity. 
-The units of the work and velocity are an unknown constant times their SI-unit. 
+The units of the work and velocity are a constant times their SI-unit. 
 The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
 
 \[
