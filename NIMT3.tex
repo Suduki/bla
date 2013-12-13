@@ -94,21 +94,6 @@ angle between the line through the pivot and the bodys center of mass and the
 vertical line, $m$ is the mass, $g$ is the acceleration due to gravity and
 $l$ is the distance from the pivot to the center of mass.
 
-To include forces that depend linearly on velocity, we introduce a term
-$F_l = -a \frac{d\theta}{dt}$ into Equation \ref{eq_of_motion}, giving
-very complicated solutions. Forces that depend on velocity squared may be included
-i a similar manner, giving an equation of motion on the form
-\begin{equation}
-    \frac{d^2\theta}{dt^2} 
-  - a \frac{d\theta}{dt} \left(
-  + \frac{b}{a} \frac{d\theta}{dt} \right)  
-  + \frac{mgl}{I_p}\sin{\theta} = 0,
-  \label{eq_of_motion_complicated}
-\end{equation}
-where $a$ and $b$ are constants.
-
-However, we observe that it looks like a damped harmonic oscillator\cite{osc}, with a
-damping ratio that depends on velocity.
 
 %By approximating $\sin{\theta} \approx \theta$, we
 %get the simpler expression
@@ -120,31 +105,50 @@ damping ratio that depends on velocity.
 %solutions to the second order polynomial created by substituting equation
 %\ref{diff_solution} into \ref{eq_of_motion}.
 
-\subsection{Friction}
+\subsection{Introducing Friction}
 A physical pendulum will usually experience some friction between solid
 surfaces around its pivot point.
-This force may realistically be modelled as being proportional to velocity\cite{}.
+This force may realistically be modelled as being proportional to velocity\cite[p. 30]{book}.
+
+To include forces that depend linearly on velocity into \ref{eq_of_motion}, 
+we introduce a term $F_l = -a \frac{d\theta}{dt}$ into it. 
+\begin{equation}
+    \frac{d^2\theta}{dt^2} 
+  - a \frac{d\theta}{dt}
+  + \frac{mgl}{I_p}\sin{\theta} = 0,
+  \label{eq_of_motion_comp1}
+\end{equation}
+where $a$ is a constant.
+This now discribes the motions of what is called a damped harmonic oscillator\cite{osc}.
+
+\subsection{Introducing Drag}
+Air drag is the force between the air and the penndulum. 
+This force is highly dependent on velocity.
+For low velocities we approximate the air to be small evenly distributed balls, bouncing off the
+pendulum as it travels through space. 
+Increasing velocity by some factor will increase the number of bouncing by the same
+factor, so this introduces a linear term into 
+Equation \ref{eq_of_motion_comp1}, and can be accounted for by adjusting the constant
+$a$.
+
+For higher velocities, however, this model breaks down, and the air must be
+modelled as a fluid. Drag forces in fluids are proportional to the velocity
+squared\cite{drag}, which for us means inserting a force 
+$F_D = -b\cdot \left(\frac{d\theta}{dt}\right)^2$, where $b$ is a constant,
+into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
+
+\begin{equation}
+    \frac{d^2\theta}{dt^2} 
+  - a \frac{d\theta}{dt} \left(
+  + \frac{b}{a} \frac{d\theta}{dt} \right)  
+  + \frac{mgl}{I_p}\sin{\theta} = 0,
+  \label{eq_of_motion_comp2}
+\end{equation}
+
+It looks like a damped harmonic oscillator\cite{osc}, with a
+damping ratio that depends on velocity. At the pendulums lowest point
 
 
-\subsection{Drag}
-Air drag is a the force of friction from air. This force is described differently for different regions of velocity. 
-For low velocities we approximate an object as though it was moving through a liquid with no turbulence.
-For this case the force is proportional to $v$ as
-\[
-F_d = -bv,
-\]
-where $F_d$ is force of drag, $v$ is the velocity and $b$ is a positive constant. 
-
-For higher velocities the force of drag can be described as
-\[
- F_D = \frac{1}{2}\rho v^2 C_D A,
-\]
-where $F_D$ is the drag force, $\rho$ is the mass density of the fluid and $C_D$ is the drag coefficient.
-For our purpose all of the factors are constants, which allows us to use
-\[
- F_D = -c\cdot v^2,
-\]
-where c is a positive constant.
 
 \subsection{Optics}
 \subsection{Circuits}
@@ -247,6 +251,10 @@ able to do a high enough velocity measurement due to the quick damping as well a
 
   \bibitem{osc} Wikipedia. \textit{Harmonic oscillator}\\ 
   \url{http://en.wikipedia.org/wiki/Harmonic_oscillator} [\todayswe]
+
+	\bibitem{book} Baker, Blackburn (2005). 
+  \textit{The Pendulum, A Case Study in Physics}\\
+  Oxford, University Press.
 
 \end{thebibliography}
 
