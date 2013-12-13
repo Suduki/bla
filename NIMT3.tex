@@ -81,6 +81,14 @@ in order to find and analyze its damping forces. A time of flight instrumentatio
 is constructed and used to aquire the velocity data.
 
 \section{Theory}
+\subsection{Time of flight}
+Time of Flight (ToF) is a method that measure the time that the objects drive distance. 
+You can find distance of object or velocity or path length of a movement with this technique.
+We convert this technique to find velocity of pendulum. We have two parallel beams 
+with optic setup. Pendulum make a harmonic oscillator between these beams. We know the 
+distance between two beams. We take time data with photodiodes. When pendulum pass the 
+beams, that cause picks at DAQ data. We can get time values with measure distance between 
+these picks.
 \subsection{The pendulum}
 For a simple rigid body pendulum, using Newtons second law and balancing the
 forces gives us the following
@@ -155,31 +163,34 @@ At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
 \subsection{Optics}
 \subsection{Circuits}
 
-\section{Experimental Setup}
-\section{Procedure}
 
-\section{Error calculations}
-\subsection{Error of the time of flight instrumentation}
-One error of the measurement device is the error from the non-continous data collecting as demonstrated in Figure \ref{f:lasercloseup}.
-Since our LabVIEW-setup collect data only at a rate of $50\text{kHz}$ and we measure at high velocities we will get an error from this.
-Since we know the maximum error in time as the rate of data collecting we know the maximum error as:
-\[
-	\Delta v=\Delta t\cdot s,
-\]
-where $\Delta v$ is the maximum error of velocity, $\Delta t$ is the maximum error in time and $s$ is the distance travelled during this time.
-This equation can be rewritten as:
-\[
-	\Delta v=\Delta t\cdot (\Delta t \cdot (v + \Delta v)) \Rightarrow\Delta v = \frac{v(\Delta t)^2}{1-\Delta t}
-\]
+\section{Experimental Setup}
+\subsection{Electric circuit}
+The first mission is to convert light to voltage. This is done by using photodiodes that converts light into current, which is then converted using a current-to-voltage converter.
+Photodiodes are made from semiconductor materials and are based on p-n junction principle. We use Silicon photodiodes in the experiment. The electric circuit can be seen in Figure \ref{f:circuit}.
+\begin{figure}[h]
+	\centering
+	\includegraphics{circuit}
+	\caption{The electric circuit of the setup. D1 and D2 are the photodiodes.}
+	\label{f:circuit}
+\end{figure}
+
+We connect a 100k resistor from input to output to create an inverting amplifier. We feed the operational amplifier with 15V and we use 470µF capacitor to reduce noise. The voltage is digitalized by a DAQ card that we attach to output of the amplifier. LabVIEW is used to collect the data.
+
+\subsection{Optical setup}
+The optical setup can be seen in Figure \ref{opticalsetup}. We use a Helium-Neon  laser(JDSU 1101) and its wavelength is 632,8nm. Firstly we set laser, beam splitter, lens and mirror same height. We get two parallel beams with beam splitter. 
+We mount a wire to our pendulum. Because pendulum is too thick to get well data. Then we paint the wire with tipp-ex to prevent beam reflection from it. We use a straight mirror to angle the beam to photodiodes. We put two +100 lens to get more clear beams.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics{errorofdevice}
-	\caption{The source of the error of the time of flight instrumentation is demonstrated.}
-	\label{f:lasercloseup}
+	\includegraphics[scale=0.4]{opticalsetup2}
+	\caption{Work versus velocity data and  linear fits for the pendulum.}
+	\label{f:opticalsetup}
 \end{figure}
 
+\section{Procedure}
 
+\section{Error calculations}
 
 \subsection{Error of the slope of a linear fitting}
 To calculate the error of the slope of a linear fit we simply use MATLAB to calculate the following equation:
@@ -187,10 +198,10 @@ To calculate the error of the slope of a linear fit we simply use MATLAB to calc
 	s = \text{std}(f(x)-data(x)),
 	\label{e:std}
 \end{equation}
-where $s$ is the standard deviation of the residuals, $x$ is the x-values of the region considered, $data$ is the data values of the region considered and $f$ is the linear fit.
-This standard deviation will be a measure of how correct the linear approximation is.
-
-
+where $s$ is the standard deviation of the residuals, $x$ is the x-values of the region considered, 
+$data$ is the data values of the region considered and $f$ is the linear fit.
+This standard deviation will be a measure of how correct the linear approximation is, 
+but also gives an approximation of the total error from the time of flight intrumentation.
 
 \section{Results}
 In Figure \ref{f:nopaper} we see the logarithm of work done by the friction and 
@@ -236,6 +247,8 @@ The slope of the ordinary pendulum for the low-velocity region is slightly above
 
 
 \section{Discussion}
+The experimentally retrieved plots values are very precise and describing. They demonstrate the three types of frictional forces of 
+
 The behavior of the high-velocity region is not entirely as expected. We expected the slope of the added-area pendulum 
 to be closer to $3$ than the other pendulum.
 This is explained by the fact that the high-velocity regions are not exactly the same for the different types of pendula. We were not 
