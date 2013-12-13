@@ -82,12 +82,21 @@ is constructed and used to aquire the velocity data.
 
 \section{Theory}
 \subsection{The pendulum}
-For a simple rigid body pendulum, Newtons second law gives us the following
+For a simple rigid body pendulum, using Newtons second law and balancing the
+forces gives us the following
 equation of motion:
 \begin{equation}
-  I_p\frac{\d^2\theta}{\dt^2} + mgl\sin{\theta} = 0
+  \frac{d^2\theta}{dt^2} + \frac{mgl\sin{\theta}}{I_p} = 0,
   \label{eq_of_motion}
 \end{equation}
+where $I_p$ is the bodys moment of inertia around the pivot point, $\theta$ is the
+angle between the line through the pivot and the bodys center of mass and the
+vertical line, $m$ is the mass, $g$ is the acceleration due to gravity and
+$l$ is the distance from the pivot to the center of mass.
+
+To include forces that depend linearly on velocity, we introduce a term
+$F_l = -2\gamma \frac{d\theta}{dt}$ into Equation \ref{eq_of_motion}, giving
+solutions on the form
 
 
 
