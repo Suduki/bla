@@ -114,11 +114,11 @@ To include forces that depend linearly on velocity into \ref{eq_of_motion},
 we introduce a term $F_l = -a \frac{d\theta}{dt}$ into it. 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
-  - a \frac{d\theta}{dt}
+  - A \frac{d\theta}{dt}
   + \frac{mgl}{I_p}\sin{\theta} = 0,
   \label{eq_of_motion_comp1}
 \end{equation}
-where $a$ is a constant.
+where $A$ is a constant.
 This now discribes the motions of what is called a damped harmonic oscillator\cite{osc}.
 
 \subsection{Introducing Drag}
@@ -129,24 +129,26 @@ pendulum as it travels through space.
 Increasing velocity by some factor will increase the number of bouncing by the same
 factor, so this introduces a linear term into 
 Equation \ref{eq_of_motion_comp1}, and can be accounted for by adjusting the constant
-$a$.
+$A$.
 
 For higher velocities, however, this model breaks down, and the air must be
 modelled as a fluid. Drag forces in fluids are proportional to the velocity
 squared\cite{drag}, which for us means inserting a force 
-$F_D = -b\cdot \left(\frac{d\theta}{dt}\right)^2$, where $b$ is a constant,
+$F_D = -B\cdot \left(\frac{d\theta}{dt}\right)^2$, where $B$ is a constant,
 into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
-  - a \frac{d\theta}{dt} \left(
-  + \frac{b}{a} \frac{d\theta}{dt} \right)  
+  - B \frac{d\theta}{dt}
+  + \left(1 + \frac{B}{A} \frac{d\theta}{dt} \right)  
   + \frac{mgl}{I_p}\sin{\theta} = 0,
   \label{eq_of_motion_comp2}
 \end{equation}
 
-It looks like a damped harmonic oscillator\cite{osc}, with a
-damping ratio that depends on velocity. At the pendulums lowest point
+It looks like a damped harmonic oscillator, but with a
+damping ratio that depends on velocity. 
+
+At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
 
 
 
