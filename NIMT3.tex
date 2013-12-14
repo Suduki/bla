@@ -119,7 +119,7 @@ surfaces around its pivot point.
 This force may sometimes be modelled as being proportional to velocity\cite[p. 30]{book},
 and sometimes as independent of velocity \cite{friction}.
 
-To both of these dependencies into \ref{eq_of_motion}, 
+To put both of these dependencies into \ref{eq_of_motion}, 
 we introduce a term $F_l = -a \frac{d\theta}{dt} - c$ into it. 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
@@ -161,10 +161,61 @@ damping ratio that depends on velocity.
 At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
 
 
+\subsubsection{Energy Approach}
+The equation of energy concerning angular velocity of the pendulum is
+\[
+	E = \frac{(\frac{d\theta}{dt})^2\cdot I_p }{2}.
+\]
+As $\frac{d\theta}{dt} = const\cdot v$ and $I_p$ is constant we can use the equation
+\[
+	E = d\cdot v_m^2,
+\]
+where $d$ is a constant and $v_m$ is the maximum motion of the bottom part of the pendulum, when calculating energies.
 
-\subsection{Optics}
-\subsection{Circuits}
+We know that the force of drag is
+\[
+	F_d = a + bv + cv^2.
+\]
+The work done during one half period is found as
+\[
+	W = 2\int_0^s{F_d ds},
+\]
+where s is the distance travelled of the bottom part of the pendulum for one fourth period.
+Since $ds = rd\theta$ we get the equation
+\[
+	W = 2\int_0^{\theta_m}{F_d d\theta},
+\]
+where $\theta_m$ is the turning angle.
+We know that this work is much smaller than the total energy of the system. This is used to make the assumption 
+\[
+	rg(1-cos(\theta) + v^2 = v_m^2 = const,
+\]
+where$ r$ is the length of the pendulum, and $g$ is the acceleration of gravity.
+We can use this to find a relation between $d\theta$ and $dv$ as:
+\[
+	d\theta = \frac{kvdv}{\sqrt{1-(v^2+d)^2}},
+\]
+where $k$ is a constant and $d = 2rg - v_{m}^{2}$.
+Using this we get an integration of finding the work.
+\[
+	W = 2k\int_{v_m}^0 F_d \frac{kvdv}{\sqrt{1-(v^2+d)^2}}
+\]
+The velocities are not very high during our experiments. Thus we can Taylor expand around 0.
+This integral is solved using Taylor expansion around 0 and Wolfram Alpha which gives us the equation:
+\[
+	W = \frac{av_{m}^{2}}{2\sqrt{2rg-d^2}} + \frac{bv_{m}^{3}}{3\sqrt{1-d^2}} + \frac{v_{m}^{4} (ad-cd^2+c)}{5(1-d^2)^{3/2}} + \mathcal{O}(5).
+\]
+Using the definition of $d$, which is a function of $v_m$ and Wolfram Alpha and Taylor expand the expression around $v_m=0$ we get the final equation for the work of one half period:
+\[
+	W = Av + Bv^2 + Cv^3 +  \mathcal{O}(4).
+\]
 
+\begin{figure}[h]
+	\centering
+	\includegraphics{pendulummotion}
+	\caption{The energies of the moving pendulum are demonstrated}
+	\label{f:pendulummotion}
+\end{figure}
 
 \section{Experimental Setup}
 The experimental setup consists of one electric circuit described in section \ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup} and a PC with MATLAB and LabVIEW installed. 
