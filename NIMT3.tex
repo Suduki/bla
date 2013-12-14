@@ -81,9 +81,9 @@ in order to find and analyze its damping forces. A time of flight instrumentatio
 is constructed and used to aquire the velocity data.
 
 \section{Theory}
-\subsection{Time of flight}
-Time of Flight (ToF) is a method that measure the time that the objects drive distance. 
-You can find distance of object or velocity or path length of a movement with this technique.
+\subsection{Time of Flight}
+Time of Flight (ToF) is a method that measures the time for an object to move a known distance.
+You can find the distance of an object or velocity or path length of a movement with this technique.
 We convert this technique to find velocity of pendulum. We have two parallel beams 
 with optic setup. Pendulum make a harmonic oscillator between these beams. We know the 
 distance between two beams. We take time data with photodiodes. When pendulum pass the 
@@ -167,7 +167,18 @@ At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
 
 
 \section{Experimental Setup}
+The experimental setup consists of one electric circuit described in section \ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup} and a PC with MATLAB and LabVIEW installed. 
+The setup can be seen in Figure \ref{f:setup}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{setup}
+	\caption{The electric circuit of the setup. D1 and D2 are the photodiodes.}
+	\label{f:setup}
+\end{figure}
+
 \subsection{Electric circuit}
+\label{s:Electric circuit}
 The first mission is to convert light to voltage. This is done by using photodiodes that converts light into current, which is then converted using a current-to-voltage converter.
 Photodiodes are made from semiconductor materials and are based on p-n junction principle. We use Silicon photodiodes in the experiment. The electric circuit can be seen in Figure \ref{f:circuit}.
 \begin{figure}[h]
@@ -180,13 +191,14 @@ Photodiodes are made from semiconductor materials and are based on p-n junction 
 We connect a 100k resistor from input to output to create an inverting amplifier. We feed the operational amplifier with 15V and we use 470µF capacitor to reduce noise. The voltage is digitalized by a DAQ card that we attach to output of the amplifier. LabVIEW is used to collect the data.
 
 \subsection{Optical setup}
-The optical setup can be seen in Figure \ref{opticalsetup}. We use a Helium-Neon  laser(JDSU 1101) and its wavelength is 632,8nm. Firstly we set laser, beam splitter, lens and mirror same height. We get two parallel beams with beam splitter. 
+\label{s:Optical setup}
+The optical setup can be seen in Figure \ref{f:opticalsetup}. We use a Helium-Neon  laser(JDSU 1101) with a wavelength of 632,8nm. Firstly we set the laser, beam splitter, lenses and mirror on the same height. We get two parallel beams with the beam splitter. 
 We mount a wire to our pendulum. Because pendulum is too thick to get well data. Then we paint the wire with tipp-ex to prevent beam reflection from it. We use a straight mirror to angle the beam to photodiodes. We put two +100 lens to get more clear beams.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{opticalsetup2}
-	\caption{Work versus velocity data and  linear fits for the pendulum.}
+	\caption{The optical setup seen from above. A mirror is also used to direct the lasers onto the photodiodes. The figure is not correct according to scale.}
 	\label{f:opticalsetup}
 \end{figure}
 
