@@ -113,48 +113,52 @@ $l$ is the distance from the pivot to the center of mass.
 %solutions to the second order polynomial created by substituting equation
 %\ref{diff_solution} into \ref{eq_of_motion}.
 
-\subsection{Introducing Friction}
+\subsubsection{Introducing Friction}
 A physical pendulum will usually experience some friction between solid
 surfaces around its pivot point.
-This force may realistically be modelled as being proportional to velocity\cite[p. 30]{book}.
+This force may sometimes be modelled as being proportional to velocity\cite[p. 30]{book},
+and sometimes as independent of velocity \cite{friction}.
 
-To include forces that depend linearly on velocity into \ref{eq_of_motion}, 
-we introduce a term $F_l = -a \frac{d\theta}{dt}$ into it. 
+To both of these dependencies into \ref{eq_of_motion}, 
+we introduce a term $F_l = -a \frac{d\theta}{dt} - c$ into it. 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
-  - a \frac{d\theta}{dt}
-  + \frac{mgl}{I_p}\sin{\theta} = 0,
+  - A \frac{d\theta}{dt}
+  + \frac{mgl}{I_p}\sin{\theta} = \text{sgn}(\frac{d\theta}{dt})C,
   \label{eq_of_motion_comp1}
 \end{equation}
-where $a$ is a constant.
-This now discribes the motions of what is called a damped harmonic oscillator\cite{osc}.
+where $A$ and $C$ are constants.
+If $C = 0$ this now discribes the motions of what is 
+called a damped harmonic oscillator\cite{osc}.
 
-\subsection{Introducing Drag}
-Air drag is the force between the air and the penndulum. 
+\subsubsection{Introducing Drag}
+Air drag is the force between the air and the pendulum. 
 This force is highly dependent on velocity.
 For low velocities we approximate the air to be small evenly distributed balls, bouncing off the
 pendulum as it travels through space. 
 Increasing velocity by some factor will increase the number of bouncing by the same
 factor, so this introduces a linear term into 
 Equation \ref{eq_of_motion_comp1}, and can be accounted for by adjusting the constant
-$a$.
+$A$.
 
 For higher velocities, however, this model breaks down, and the air must be
 modelled as a fluid. Drag forces in fluids are proportional to the velocity
 squared\cite{drag}, which for us means inserting a force 
-$F_D = -b\cdot \left(\frac{d\theta}{dt}\right)^2$, where $b$ is a constant,
+$F_D = -B\cdot \left(\frac{d\theta}{dt}\right)^2$, where $B$ is a constant,
 into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
-  - a \frac{d\theta}{dt} \left(
-  + \frac{b}{a} \frac{d\theta}{dt} \right)  
-  + \frac{mgl}{I_p}\sin{\theta} = 0,
+  - B \frac{d\theta}{dt}
+  + \left(1 + \frac{B}{A} \frac{d\theta}{dt} \right)  
+  + \frac{mgl}{I_p}\sin{\theta} = \text{sgn}(\frac{d\theta}{dt})C,
   \label{eq_of_motion_comp2}
 \end{equation}
 
-It looks like a damped harmonic oscillator\cite{osc}, with a
-damping ratio that depends on velocity. At the pendulums lowest point
+It looks like a damped harmonic oscillator, but with a
+damping ratio that depends on velocity. 
+
+At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
 
 
 
@@ -280,6 +284,9 @@ able to do a high enough velocity measurement due to the quick damping as well a
 	\bibitem{book} Baker, Blackburn (2005). 
   \textit{The Pendulum, A Case Study in Physics}\\
   Oxford, University Press.
+
+  \bibitem{friction} Wikipedia. \textit{Friction}\\ 
+  \url{http://en.wikipedia.org/wiki/Friction} [\todayswe]
 
 \end{thebibliography}
 
