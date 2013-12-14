@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper]{article}
+﻿\documentclass[11pt, a4paper]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[swedish, english]{babel}		% last is active
 \usepackage{graphicx}
@@ -100,7 +100,10 @@ equation of motion:
 where $I_p$ is the bodys moment of inertia around the pivot point, $\theta$ is the
 angle between the line through the pivot and the bodys center of mass and the
 vertical line, $m$ is the mass, $g$ is the acceleration due to gravity and
-$l$ is the distance from the pivot to the center of mass.
+$l$ is the distance from the pivot to the center of mass. 
+Observe that the second derivative term corresponds to centrifugal forces, and
+that the other term corresponds to gravitiational ones.
+
 
 
 %By approximating $\sin{\theta} \approx \theta$, we
@@ -119,22 +122,27 @@ surfaces around its pivot point.
 This force may sometimes be modelled as being proportional to velocity\cite[p. 30]{book},
 and sometimes as independent of velocity \cite{friction}.
 
+
 To put both of these dependencies into \ref{eq_of_motion}, 
-we introduce a term $F_l = -a \frac{d\theta}{dt} - c$ into it. 
+we introduce a term $F_l = -A \frac{d\theta}{dt} - \text{sgn}\left(\frac{d\theta}{dt}\right)C$ into it. 
+
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
   - A \frac{d\theta}{dt}
-  + \frac{mgl}{I_p}\sin{\theta} = \text{sgn}(\frac{d\theta}{dt})C,
+  + \frac{mgl}{I_p}\sin{\theta} 
+  - \text{sgn}(\frac{d\theta}{dt})C 
+  = 0,
   \label{eq_of_motion_comp1}
 \end{equation}
-where $A$ and $C$ are constants.
+where $A$ and $C$ are positive constants.
 If $C = 0$ this now discribes the motions of what is 
 called a damped harmonic oscillator\cite{osc}.
 
 \subsubsection{Introducing Drag}
 Air drag is the force between the air and the pendulum. 
 This force is highly dependent on velocity.
-For low velocities we approximate the air to be small evenly distributed balls, bouncing off the
+For low velocities we approximate the air to be small evenly distributed balls,
+bouncing off the
 pendulum as it travels through space. 
 Increasing velocity by some factor will increase the number of bouncing by the same
 factor, so this introduces a linear term into 
@@ -144,22 +152,41 @@ $A$.
 For higher velocities, however, this model breaks down, and the air must be
 modelled as a fluid. Drag forces in fluids are proportional to the velocity
 squared\cite{drag}, which for us means inserting a force 
-$F_D = -B\cdot \left(\frac{d\theta}{dt}\right)^2$, where $B$ is a constant,
+$F_D = -B\cdot \left(\frac{d\theta}{dt}\right)^2$, where $B$ is a positive constant,
 into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
   - B \frac{d\theta}{dt}
-  + \left(1 + \frac{B}{A} \frac{d\theta}{dt} \right)  
-  + \frac{mgl}{I_p}\sin{\theta} = \text{sgn}(\frac{d\theta}{dt})C,
+  \left(1 + \frac{B}{A}f(\frac{d\theta}{dt}) \frac{d\theta}{dt} \right)  
+  + \frac{mgl}{I_p}\sin{\theta} 
+  - \text{sgn}\left(\frac{d\theta}{dt}\right)C
+  = 0,
   \label{eq_of_motion_comp2}
 \end{equation}
+where $f(\omega)$ is a heavyside fuction evaluating to 1 if the angular
+velocity is higher than some critical value:
+\begin{equation}
+f(\omega) = \left\{
+  \begin{array}{lr}
+    1 & : \omega > \omega_{c}\\
+    0 & : \omega < \omega_{c}
+  \end{array}
+\right.
+\end{equation}
 
-It looks like a damped harmonic oscillator, but with a
-damping ratio that depends on velocity. 
+\subsubsection{Simplifying}
 
-At the pendulums lowest point we have, $\theta = \sin{\theta} = 0$
+We can get a lot of information by looking at Equation \ref{eq_of_motion_comp2}
+at the lowest point, where we know that gravitational and centrifugal forces
+cancel each other and don't have any component in the direction of motion.
 
+The acceleration in this point will be negative:
+\begin{equation}
+  - B \frac{d\theta}{dt}
+  \left(1 + \frac{B}{A}f(\frac{d\theta}{dt}) \frac{d\theta}{dt} \right)  
+  - \text{sgn}\left(\frac{d\theta}{dt}\right)C.
+\end{equation} 
 
 \subsubsection{Energy Approach}
 The equation of energy concerning angular velocity of the pendulum is
@@ -217,8 +244,11 @@ Using the definition of $d$, which is a function of $v_m$ and Wolfram Alpha and 
 	\label{f:pendulummotion}
 \end{figure}
 
+
 \section{Experimental Setup}
-The experimental setup consists of one electric circuit described in section \ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup} and a PC with MATLAB and LabVIEW installed. 
+The experimental setup consists of one electric circuit described in section 
+\ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup} and 
+a PC with MATLAB and LabVIEW installed. 
 The setup can be seen in Figure \ref{f:setup}. 
 
 \begin{figure}[h]
@@ -230,8 +260,12 @@ The setup can be seen in Figure \ref{f:setup}.
 
 \subsection{Electric circuit}
 \label{s:Electric circuit}
-The first mission is to convert light to voltage. This is done by using photodiodes that converts light into current, which is then converted using a current-to-voltage converter.
-Photodiodes are made from semiconductor materials and are based on p-n junction principle. We use Silicon photodiodes in the experiment. The electric circuit can be seen in Figure \ref{f:circuit}.
+The first mission is to convert light to voltage. This is done by using photodiodes 
+that converts light into current, which is then converted using a
+current-to-voltage converter.
+Photodiodes are made from semiconductor materials and are based on p-n junction 
+principle. We use Silicon photodiodes in the experiment. The electric circuit can 
+be seen in Figure \ref{f:circuit}.
 \begin{figure}[h]
 	\centering
 	\includegraphics{circuit}
@@ -239,17 +273,27 @@ Photodiodes are made from semiconductor materials and are based on p-n junction 
 	\label{f:circuit}
 \end{figure}
 
-We connect a 100k resistor from input to output to create an inverting amplifier. We feed the operational amplifier with 15V and we use 470µF capacitor to reduce noise. The voltage is digitalized by a DAQ card that we attach to output of the amplifier. LabVIEW is used to collect the data.
+We connect a 100k resistor from input to output to create an inverting amplifier. 
+We feed the operational amplifier with 15V and we use 470µF capacitor to reduce 
+noise. The voltage is digitalized by a DAQ card that we attach to output of the 
+amplifier. LabVIEW is used to collect the data.
 
 \subsection{Optical setup}
 \label{s:Optical setup}
-The optical setup can be seen in Figure \ref{f:opticalsetup}. We use a Helium-Neon  laser(JDSU 1101) with a wavelength of 632,8nm. Firstly we set the laser, beam splitter, lenses and mirror on the same height. We get two parallel beams with the beam splitter. 
-We mount a wire to our pendulum. Because pendulum is too thick to get well data. Then we paint the wire with tipp-ex to prevent beam reflection from it. We use a straight mirror to angle the beam to photodiodes. We put two +100 lens to get more clear beams.
+The optical setup can be seen in Figure \ref{f:opticalsetup}. We use a Helium-Neon 
+laser(JDSU 1101) with a wavelength of 632,8nm. Firstly we set the laser, beam 
+splitter, lenses and mirror on the same height. We get two parallel beams with the 
+beam splitter. 
+We mount a wire to our pendulum. Because pendulum is too thick to get well data. 
+Then we paint the wire with tipp-ex to prevent beam reflection from it. We use a 
+straight mirror to angle the beam to photodiodes. We put two +100 lens to get more 
+clear beams.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{opticalsetup2}
-	\caption{The optical setup seen from above. A mirror is also used to direct the lasers onto the photodiodes. The figure is not correct according to scale.}
+	\caption{The optical setup seen from above. A mirror is also used to direct the 
+  lasers onto the photodiodes. The figure is not correct according to scale.}
 	\label{f:opticalsetup}
 \end{figure}
 
@@ -258,27 +302,32 @@ We mount a wire to our pendulum. Because pendulum is too thick to get well data.
 \section{Error calculations}
 
 \subsection{Error of the slope of a linear fitting}
-To calculate the error of the slope of a linear fit we simply use MATLAB to calculate the following equation:
+To calculate the error of the slope of a linear fit we simply use MATLAB to 
+calculate the following equation:
 \begin{equation}
 	s = \text{std}(f(x)-data(x)),
 	\label{e:std}
 \end{equation}
-where $s$ is the standard deviation of the residuals, $x$ is the x-values of the region considered, 
+where $s$ is the standard deviation of the residuals, $x$ is the x-values of the 
+region considered, 
 $data$ is the data values of the region considered and $f$ is the linear fit.
 This standard deviation will be a measure of how correct the linear approximation is, 
-but also gives an approximation of the total error from the time of flight intrumentation.
+but also gives an approximation of the total error from the time of flight 
+intrumentation.
 
 \section{Results}
 In Figure \ref{f:nopaper} we see the logarithm of work done by the friction and 
 drag on the pendulum plotted versus the logarithm of velocity. 
 The units of the work and velocity are a constant times their SI-unit. 
-The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
+The slopes and the errors of the linear fits of the two different regions of the 
+plot are calculated to be
 \[
 	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.36(4),
 \]\[
 	slope_{high}=\frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.60(3).
 \]
-The values inside the parentheses are the standard deviation of the slope calculated using Equation \ref{e:std}.
+The values inside the parentheses are the standard deviation of the slope 
+calculated using Equation \ref{e:std}.
 
 \begin{figure}[h]
 	\centering
@@ -312,12 +361,16 @@ The slope of the ordinary pendulum for the low-velocity region is slightly above
 
 
 \section{Discussion}
-The experimentally retrieved plots values are very precise and describing. They demonstrate the three types of frictional forces of 
+The experimentally retrieved plots values are very precise and describing. 
+They demonstrate the three types of frictional forces of 
 
-The behavior of the high-velocity region is not entirely as expected. We expected the slope of the added-area pendulum 
+The behavior of the high-velocity region is not entirely as expected. We expected 
+the slope of the added-area pendulum 
 to be closer to $3$ than the other pendulum.
-This is explained by the fact that the high-velocity regions are not exactly the same for the different types of pendula. We were not 
-able to do a high enough velocity measurement due to the quick damping as well as the fluttering of the added area.
+This is explained by the fact that the high-velocity regions are not exactly the 
+same for the different types of pendula. We were not 
+able to do a high enough velocity measurement due to the quick damping as well as 
+the fluttering of the added area.
 \section{Summary and Conclusions}
 \vfill
 
