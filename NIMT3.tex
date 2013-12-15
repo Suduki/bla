@@ -1,4 +1,4 @@
-﻿\documentclass[11pt, a4paper]{article}
+\documentclass[11pt, a4paper]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage[swedish, english]{babel}		% last is active
 \usepackage{graphicx}
@@ -51,10 +51,13 @@ Yunus Gures, yunusgures@gmail.com}
 
 	\begin{abstract}
 
-  $\alpha_{alu} =\unit[(23.0 \pm 0.1)\cdot10^{-6}]{K^{-1}}$ 
-
-  $\alpha_{sst} = \unit[(15.8 \pm 0.2)\cdot10^{-6}]{K^{-1}}$, 
-    which is only 1 \% off tabulated values \cite{ph, thex}.
+		\noindent In this report, a model of damping forces on a pendulum is derived and to some extent confirmed.
+		The aim of the experiment is to find the different velocity regions for a pendulum in which different frictional forces are dominant.
+		To achieve this, the velocities of two different pendula at their lowest points are measured.
+		Time of flight with two laser beams and two photodiodes is the measurement method used.
+		The main result is that the dominant frictional force of the  low-velocity regions of the pendula are of polynomial degrees 1.36(4) and 1.96(4).
+		In the high velocity regions, the polynomial degree increases to 2.60(3) and 2.63(7).
+		The only physical difference between the pendula is that the one with the higher polynomial degree in its friction force velocity dependency has a bigger area.
 
 	\end{abstract}
 	\vfill
@@ -67,10 +70,10 @@ Yunus Gures, yunusgures@gmail.com}
 \pagestyle{plain}
 \vspace{2cm}
 \section{Introduction}
-A mechanical system cosisting only of a rigid body, with only one degree of 
+A mechanical system consisting only of a rigid body, with only one degree of 
 freedom, rotation around a constant axis, from here on called a pendulum, is 
 a system of great interest. Historically it has had a wide range of
-applications in science, mathemathics and in everyday life. Among the reasons for
+applications in science, mathematics and in everyday life. Among the reasons for
 its continued importance as an educational tool in physics is its short, general 
 equations of
 motion in the linearized, small amplitude case, and the ease and the great number 
@@ -78,19 +81,18 @@ of ways by which this case can be extended.
 
 This experiment in particular will measure a physical pendulum's decreasing velocity
 in order to find and analyze its damping forces. A time of flight instrumentation
-is constructed and used to aquire the velocity data.
+is constructed and used to acquire the velocity data.
 
 \section{Theory}
 \subsection{Time of Flight}
-Time of Flight (ToF) is a method that measures the time for an object to move a known distance.
-You can find the distance of an object or velocity or path length of a movement with this technique.
-We convert this technique to find velocity of pendulum. We have two parallel beams 
-with optic setup. Pendulum make a harmonic oscillator between these beams. We know the 
-distance between two beams. We take time data with photodiodes. When pendulum pass the 
-beams, that cause picks at DAQ data. We can get time values with measure distance between 
-these picks.
+Time of Flight (ToF) is a method that measures the time for an object to travel a distance.
+One can find either the distance of an object, its velocity or the length of the distance traveled with this technique, depending on what is known in the particular setup.
+
+To measure the velocity with two measurement points, one needs to know the distance between them and measure the time it took.
+This measured time is then equal to the distance between the measurement points divided by the velocity of the object.
+
 \subsection{The pendulum}
-For a simple rigid body pendulum, using Newtons second law and balancing the
+For a rigid body pendulum affected by no frictional forces, using Newtons second law and balancing the
 forces gives us the following
 equation of motion:
 \begin{equation}
@@ -98,11 +100,11 @@ equation of motion:
   \label{eq_of_motion}
 \end{equation}
 where $I_p$ is the bodys moment of inertia around the pivot point, $\theta$ is the
-angle between the line through the pivot and the bodys center of mass and the
+angle between the line through the pivot and the body's center of mass and the
 vertical line, $m$ is the mass, $g$ is the acceleration due to gravity and
-$l$ is the distance from the pivot to the center of mass. 
+$l$ is the distance from the pivot point to the center of mass. 
 Observe that the second derivative term corresponds to centrifugal forces, and
-that the other term corresponds to gravitiational ones.
+that the other term corresponds to gravitational ones.
 
 
 
@@ -123,8 +125,8 @@ This force may sometimes be modelled as being proportional to velocity\cite[p. 3
 and sometimes as independent of velocity \cite{friction}.
 
 
-To put both of these dependencies into \ref{eq_of_motion}, 
-we introduce a term $F_l = -A \frac{d\theta}{dt} - \text{sgn}\left(\frac{d\theta}{dt}\right)C$ into it. 
+To put both of these dependencies into Equation \ref{eq_of_motion}, 
+we introduce a term $F_l = -A \frac{d\theta}{dt} - \text{sgn}\left(\frac{d\theta}{dt}\right)C$. 
 
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
@@ -135,22 +137,22 @@ we introduce a term $F_l = -A \frac{d\theta}{dt} - \text{sgn}\left(\frac{d\theta
   \label{eq_of_motion_comp1}
 \end{equation}
 where $A$ and $C$ are positive constants.
-If $C = 0$ this now discribes the motions of what is 
+If $C = 0$ this now describes the motions of what is 
 called a damped harmonic oscillator\cite{osc}.
 
 \subsubsection{Introducing Drag}
-Air drag is the force between the air and the pendulum. 
+Air drag is the frictional force between the air and the pendulum. 
 This force is highly dependent on velocity.
 For low velocities we approximate the air to be small evenly distributed balls,
 bouncing off the
 pendulum as it travels through space. 
-Increasing velocity by some factor will increase the number of bouncing by the same
+Increasing velocity by some factor will increase the number of bouncing balls by the same
 factor, so this introduces a linear term into 
 Equation \ref{eq_of_motion_comp1}, and can be accounted for by adjusting the constant
 $A$.
 
 For higher velocities, however, this model breaks down, and the air must be
-modelled as a fluid. Drag forces in fluids are proportional to the velocity
+modeled as a fluid. Drag forces in fluids are proportional to the velocity
 squared\cite{drag}, which for us means inserting a force 
 $F_D = -B\cdot \left(\frac{d\theta}{dt}\right)^2$, where $B$ is a positive constant,
 into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
@@ -158,13 +160,13 @@ into Equation \ref{eq_of_motion_comp1}, giving us the equation of motion
 \begin{equation}
     \frac{d^2\theta}{dt^2} 
   - B \frac{d\theta}{dt}
-  \left(1 + \frac{B}{A}f(\frac{d\theta}{dt}) \frac{d\theta}{dt} \right)  
+  \left(\left( 1 -   f\left(\frac{d\theta}{dt}\right)   \right ) + \frac{B}{A}f\left(\frac{d\theta}{dt}\right) \frac{d\theta}{dt} \right)  
   + \frac{mgl}{I_p}\sin{\theta} 
   - \text{sgn}\left(\frac{d\theta}{dt}\right)C
   = 0,
   \label{eq_of_motion_comp2}
 \end{equation}
-where $f(\omega)$ is a heavyside fuction evaluating to 1 if the angular
+where $f(\omega)$ is a Heaviside step function evaluating to 1 if the angular
 velocity is higher than some critical value:
 \begin{equation}
 f(\omega) = \left\{
@@ -173,6 +175,7 @@ f(\omega) = \left\{
     0 & : \omega < \omega_{c}
   \end{array}
 \right.
+\label{e:heaviside}
 \end{equation}
 
 \subsubsection{Simplifying}
@@ -181,11 +184,12 @@ We can get a lot of information by looking at Equation \ref{eq_of_motion_comp2}
 at the lowest point, where we know that gravitational and centrifugal forces
 cancel each other and don't have any component in the direction of motion.
 
-The acceleration in this point will be negative:
+The force in this point will be negative:
 \begin{equation}
-  - B \frac{d\theta}{dt}
-  \left(1 + \frac{B}{A}f(\frac{d\theta}{dt}) \frac{d\theta}{dt} \right)  
-  - \text{sgn}\left(\frac{d\theta}{dt}\right)C.
+  F = - B \frac{d\theta}{dt}
+  \left(\left(1 - f\left(\frac{d\theta}{dt} \right)\right) + \frac{B}{A}f\left(\frac{d\theta}{dt}\right) \frac{d\theta}{dt} \right)  
+  - \text{sgn}\left(\frac{d\theta}{dt}\right)C
+\label{e:drag_comp}
 \end{equation} 
 
 \subsubsection{Energy Approach}
@@ -197,9 +201,16 @@ As $\frac{d\theta}{dt} = const\cdot v$ and $I_p$ is constant we can use the equa
 \[
 	E = d\cdot v_m^2,
 \]
-where $d$ is a constant and $v_m$ is the maximum motion of the bottom part of the pendulum, when calculating energies.
+where $d$ is a constant and $v_m$ is the maximum motion of the bottom part of the pendulum, when calculating energies. 
+The energies are demonstrated in Figure \ref{f:pendulummotion}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{pendulummotion}
+	\caption{The energies of the moving pendulum are demonstrated.}
+	\label{f:pendulummotion}
+\end{figure}
 
-We know that the force of drag is
+We model the force of drag as in Equation \ref{e:drag_comp}, but with other constants and implicit Heaviside functions, like
 \[
 	F_d = a + bv + cv^2.
 \]
@@ -207,54 +218,52 @@ The work done during one half period is found as
 \[
 	W = 2\int_0^s{F_d ds},
 \]
-where s is the distance travelled of the bottom part of the pendulum for one fourth period.
+where $s$ is the distance traveled by the bottom part of the pendulum during one fourth of a period.
 Since $ds = rd\theta$ we get the equation
 \[
-	W = 2\int_0^{\theta_m}{F_d d\theta},
+	W = 2r\int_0^{\theta_m}{F_d d\theta},
 \]
 where $\theta_m$ is the turning angle.
-We know that this work is much smaller than the total energy of the system. This is used to make the assumption 
+We know that this work is much smaller than the total energy of the system. This is used to make the approximation 
 \[
-	rg(1-cos(\theta) + v^2 = v_m^2 = const,
+	mrg(1-\cos{\theta}) + \frac{mv^2}{2} = \frac{mv_m^2}{2} = \text{const},
 \]
-where$ r$ is the length of the pendulum, and $g$ is the acceleration of gravity.
+where $r$ is the length of the pendulum, $g$ is the acceleration of gravity, and $v_m$ is the maximum velocity of the pendulum, as shown in Figure \ref{f:pendulummotion}.
 We can use this to find a relation between $d\theta$ and $dv$ as:
 \[
 	d\theta = \frac{kvdv}{\sqrt{1-(v^2+d)^2}},
 \]
 where $k$ is a constant and $d = 2rg - v_{m}^{2}$.
-Using this we get an integration of finding the work.
+This is found by expressing $\theta$ as a function of $v$ and implicitly taking the derivative.
+Using this we get an integral by which we can approximate the work.
 \[
-	W = 2k\int_{v_m}^0 F_d \frac{kvdv}{\sqrt{1-(v^2+d)^2}}
+	W = 2kr\int_{v_m}^0 F_d \frac{kvdv}{\sqrt{1-(v^2+d)^2}}
 \]
 The velocities are not very high during our experiments. Thus we can Taylor expand around 0.
 This integral is solved using Taylor expansion around 0 and Wolfram Alpha which gives us the equation:
 \[
 	W = \frac{av_{m}^{2}}{2\sqrt{2rg-d^2}} + \frac{bv_{m}^{3}}{3\sqrt{1-d^2}} + \frac{v_{m}^{4} (ad-cd^2+c)}{5(1-d^2)^{3/2}} + \mathcal{O}(5).
 \]
-Using the definition of $d$, which is a function of $v_m$ and Wolfram Alpha and Taylor expand the expression around $v_m=0$ we get the final equation for the work of one half period:
-\[
-	W = Av + Bv^2 + Cv^3 +  \mathcal{O}(4).
-\]
+Using the definition of $d$, which is a function of $v_m$ and Wolfram Alpha to Taylor expand the expression around $v_m=0$ we get the final equation for the work of one half period:
+\begin{equation}
+	W = A(a)v + B(b)v^2 + C(c)v^3 +  \mathcal{O}(4),
+	\label{e:W}
+\end{equation}
+where A, B and C are new constants, still with the Heaviside function implicit. By taking the natural logarithm of both sides and making a linear fit the dominant polynomial can be found as the slope. 
 
-\begin{figure}[h]
-	\centering
-	\includegraphics{pendulummotion}
-	\caption{The energies of the moving pendulum are demonstrated}
-	\label{f:pendulummotion}
-\end{figure}
+
 
 
 \section{Experimental Setup}
 The experimental setup consists of one electric circuit described in section 
-\ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup} and 
+\ref{s:Electric circuit}, one optical setup described in \ref{s:Optical setup}, a multifunction data acquisition card (DAQ), and 
 a PC with MATLAB and LabVIEW installed. 
 The setup can be seen in Figure \ref{f:setup}. 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics{setup}
-	\caption{The electric circuit of the setup. D1 and D2 are the photodiodes.}
+	\includegraphics[scale=0.8]{setup}
+	\caption{The experimental setup. From right to left we see the laser, the beam splitter, a lens, the pendulum, the second lens, the mirror, and the white circuit board.}
 	\label{f:setup}
 \end{figure}
 
@@ -263,9 +272,9 @@ The setup can be seen in Figure \ref{f:setup}.
 The first mission is to convert light to voltage. This is done by using photodiodes 
 that converts light into current, which is then converted using a
 current-to-voltage converter.
-Photodiodes are made from semiconductor materials and are based on p-n junction 
-principle. We use Silicon photodiodes in the experiment. The electric circuit can 
-be seen in Figure \ref{f:circuit}.
+Photodiodes are made from semiconductor materials and are based on p-n junctions that can easily get some of its electrons knocked into the conduction band by incident photons. 
+We use Silicon photodiodes in the experiment. 
+The electric circuit can be seen in Figure \ref{f:circuit}.
 \begin{figure}[h]
 	\centering
 	\includegraphics{circuit}
@@ -273,21 +282,21 @@ be seen in Figure \ref{f:circuit}.
 	\label{f:circuit}
 \end{figure}
 
-We connect a 100k resistor from input to output to create an inverting amplifier. 
-We feed the operational amplifier with 15V and we use 470µF capacitor to reduce 
+We connect a 100k$\Omega$ resistor from input to output to create an inverting amplifier. 
+We feed the operational amplifier with 15V and we use a 470µF capacitor to reduce 
 noise. The voltage is digitalized by a DAQ card that we attach to output of the 
 amplifier. LabVIEW is used to collect the data.
 
 \subsection{Optical setup}
 \label{s:Optical setup}
-The optical setup can be seen in Figure \ref{f:opticalsetup}. We use a Helium-Neon 
-laser(JDSU 1101) with a wavelength of 632,8nm. Firstly we set the laser, beam 
+The optical setup can be seen in Figure \ref{f:opticalsetup} and Figure \ref{f:setup}. 
+We use a Helium-Neon 
+laser (JDSU 1101) with a wavelength of 632.8nm. Firstly we set the laser, beam 
 splitter, lenses and mirror on the same height. We get two parallel beams with the 
 beam splitter. 
-We mount a wire to our pendulum. Because pendulum is too thick to get well data. 
-Then we paint the wire with tipp-ex to prevent beam reflection from it. We use a 
-straight mirror to angle the beam to photodiodes. We put two +100 lens to get more 
-clear beams.
+Obstructing the laser beam for a shorter time will sharpen the measured voltage spike, and thereby increase resolution of the measurements. 
+We therefore hang a wire from the bottom of our pendulum, and point the laser at it rather than the pendulum body. 
+We use two +100 mm lenses to make the beams as narrow as possible at the line of pendulum motion, as seen in Figure \ref{f:opticalsetup}.
 
 \begin{figure}[h]
 	\centering
@@ -298,8 +307,13 @@ clear beams.
 \end{figure}
 
 \section{Procedure}
-
-\section{Error calculations}
+Two measurement series is made. 
+One with the bare pendulum, and one with some added area (the green plastic part shown in Figure \ref{f:setup}).
+Only the velocities at the bottom point are recorded, not the period time.
+The circuit voltage is measured 50 k times per second, and the LabView program detects when it rises above a certain threshold value.
+When two voltage spikes has been detected, the time between them is written to a data file.
+This time is then proportional to the inverse of the velocity, since the distance between the laser beams are constant.
+The measured velocities have to be divided by the distance between the lasers in order to get units of m/s, but this is not done explicitly.
 
 \subsection{Error of the slope of a linear fitting}
 To calculate the error of the slope of a linear fit we simply use MATLAB to 
@@ -308,46 +322,40 @@ calculate the following equation:
 	s = \text{std}(f(x)-data(x)),
 	\label{e:std}
 \end{equation}
-where $s$ is the standard deviation of the residuals, $x$ is the x-values of the 
-region considered, 
+where $s$ is the standard deviation of the residuals, $x$ is the x-values of the region considered, 
 $data$ is the data values of the region considered and $f$ is the linear fit.
 This standard deviation will be a measure of how correct the linear approximation is, 
-but also gives an approximation of the total error from the time of flight 
-intrumentation.
+but also gives an approximation of the total error from the time of flight instrumentation.
 
 \section{Results}
-In Figure \ref{f:nopaper} we see the logarithm of work done by the friction and 
-drag on the pendulum plotted versus the logarithm of velocity. 
-The units of the work and velocity are a constant times their SI-unit. 
-The slopes and the errors of the linear fits of the two different regions of the 
-plot are calculated to be
-\[
-	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.36(4),
-\]\[
-	slope_{high}=\frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.60(3).
-\]
-The values inside the parentheses are the standard deviation of the slope 
-calculated using Equation \ref{e:std}.
+In Figure \ref{f:nopaper} and Figure \ref{f:paper}, we see the logarithm of work done by friction and drag on the pendulum versus the logarithm of velocity, for a bare pendulum and one
+with added area respectively. In both plots it is clear that there are two regions with different $v$-dependencies. 
 
-\begin{figure}[h]
+The slopes and the errors of the linear fits of the two different regions of the plot in Figure \ref{f:nopaper} are calculated to be
+\[
+	k_{low} = \frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.36(4),
+\]
+\[
+	k_{high} = \frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.60(3).
+\]
+The values inside the parentheses are the standard deviation of the residuals, calculated using Equation \ref{e:std}.
+
+\begin{figure}[h!]
 	\centering
 	\includegraphics[trim=10.0cm 10.0cm 10.0cm 10.0cm, scale=0.7]{no_paper}
-	\caption{Work versus velocity data and  linear fits for the pendulum.}
+	\caption{Work versus velocity data and  linear fits for the bare pendulum.}
 	\label{f:nopaper}
 \end{figure}
 
-In Figure \ref{f:paper} we see the logarithm of work done by the friction and 
-drag on the pendulum with the added area plotted versus the logarithm of velocity. 
-The units of the work and velocity are a constant times their SI-unit. 
-The slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
+In Figure \ref{f:paper} the slopes and the errors of the linear fits of the two different regions of the plot are calculated to be
 
 \[
-	slope_{low}=\frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.96(4),
+	k_{low}^{(A)} = \frac{\Delta\ln(W_{low})}{\Delta\ln(v_{low})} = 1.96(4),
 \]\[
-	slope_{high}=\frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.63(7).
+	k_{high}^{(A)} = \frac{\Delta\ln(W_{high})}{\Delta\ln(v_{high})} = 2.63(7).
 \]
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[trim=10.0cm 10.0cm 10.0cm 10.0cm, scale=0.7]{paper}
 	\caption{Work versus velocity data and  linear fits for the pendulum with an added area.}
@@ -356,41 +364,48 @@ The slopes and the errors of the linear fits of the two different regions of the
 
 It is clear that the slopes of the high velocity region are similar and close to $3$. 
 The slope of the added-area pendulum for the low-velocity region is very close to $2$.
-The slope of the ordinary pendulum for the low-velocity region is slightly above $1$.
+The slope of the bare pendulum for the low-velocity region is slightly above $1$.
 
 
 
 \section{Discussion}
-The experimentally retrieved plots values are very precise and describing. 
-They demonstrate the three types of frictional forces of 
+The experimentally retrieved plots values are very describing.
+They verify the model described in Equation \ref{eq_of_motion_comp2} to some extent.
+The critical velocity is clearly visible, and the slope in the low velocity region, especially for the added-area pendulum is very close to the expected value.
 
-The behavior of the high-velocity region is not entirely as expected. We expected 
-the slope of the added-area pendulum 
-to be closer to $3$ than the other pendulum.
-This is explained by the fact that the high-velocity regions are not exactly the 
-same for the different types of pendula. We were not 
-able to do a high enough velocity measurement due to the quick damping as well as 
-the fluttering of the added area.
-\section{Summary and Conclusions}
+The behavior of the high-velocity region is not entirely as expected. 
+We expected the slope of the added-area pendulum to be closer to $3$ than the slope in the high-velocity region of the other pendulum.
+This is explained by the fact that the high-velocity regions are not exactly the same for the different types of pendula. 
+We were not able to do a high enough velocity measurement due to the quick damping as well as the fluttering of the added area.
+
+The fact that neither $k_{high}$ or $k_{high}^{(A)}$ are closer to 3 is explained by the velocities of the pendulum around its turning point.
+In this area the pendulum will experience linear drag according to our model. 
+ 
+ \section{Summary and Conclusions}
+The friction on an object traveling through air, give rise to forces with a discontinuous dependency of velocity.
+Between the discontinuous break-points there are continuous dominant polynomial dependencies arising from friction between solid surfaces, linear drag or quadratic drag.
+In our plots we see three different regions of friction and drag, depending on the shape and velocity of the pendulum. 
+Solving the general equation of pendulum motion is not needed to see this tendency.
+
+There should be a more elegant way to get the equation of work than the one described in this report. 
+We were not able to find this.
+
 \vfill
 
 \begin{thebibliography}{99}
-	\bibitem{ph} Nordling, C., Österman, J. (2006). 
-  \textit{Physics Handbook  $8^{th}$}\\
-  Lund, Sweden, Studentlitteratur.
 
-  \bibitem{drag} Wikipedia. \textit{Drag}\\ 
-  \url{http://en.wikipedia.org/wiki/Drag_(physics)} [\todayswe]
-
-  \bibitem{osc} Wikipedia. \textit{Harmonic oscillator}\\ 
-  \url{http://en.wikipedia.org/wiki/Harmonic_oscillator} [\todayswe]
-
-	\bibitem{book} Baker, Blackburn (2005). 
+  \bibitem{book} Baker, Blackburn (2005). 
   \textit{The Pendulum, A Case Study in Physics}\\
   Oxford, University Press.
 
   \bibitem{friction} Wikipedia. \textit{Friction}\\ 
   \url{http://en.wikipedia.org/wiki/Friction} [\todayswe]
+	
+  \bibitem{osc} Wikipedia. \textit{Harmonic oscillator}\\ 
+  \url{http://en.wikipedia.org/wiki/Harmonic_oscillator} [\todayswe]
+
+  \bibitem{drag} Wikipedia. \textit{Drag}\\ 
+  \url{http://en.wikipedia.org/wiki/Drag_(physics)} [\todayswe]
 
 \end{thebibliography}
 
